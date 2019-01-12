@@ -1,0 +1,510 @@
+
+--- Deep Net Platform ---
+
+ersatz
+H2o.ai
+Turi (old name-Dato)
+
+
+--- Deep Learning Libraries ---
+Libraries are a predefined set of functions and modules that can be included in our code to achieve a particular task.
+There are plenty of libraries in deep learning, each with its advantages and limitations.
+This topic covers the brief overview of deep learning libraries like 
+Commercial Sf: Deeplearning4j, Torch, 
+Academic and research: Caffe, and TensorFlow
+
+1. Theano : 
+	It was developed by a machine learning group headed by Yoshua Bengio at the University of Montreal.
+	It is more a research platform than a deep learning library. You must perform more work by yourself to generate the models that you want. It does not have any deep learning classes within itself.
+	****Features
+	Theano allows us to define mathematical expressions as a set of vectors and matrices. This avoids too many for loops in our code and greatly reduces the computation time.
+	Theano is best suited when we are going to build everything from scratch. It just aids in representing our deep net in terms of vectors and matrices.
+	Some of the optimization techniques used by Theano are the use of GPU for computations, arithmetic simplification, constant folding, using memory aliasing to avoid calculation, etc.
+	Popular libraries like Keras, Lasagne, Blocks, and Pylearn2 are built on top of Theano
+
+2. DeepLearning4j: 
+	DeepLearning4J (DL4J) is a Deep Learning framework created in Java and JVM languages for using in commercial deep learning projects. Adam Gibson developed DL4J.
+	DL4J is utilized in business environments on distributed CPUs and GPUs, making it ideal for commercial-grade applications.
+	****Features
+	DL4J runs on distributed GPUs and CPUs.
+	It allows us to tune the deep net by selecting values for hyperparameters
+	It supports most of the deep nets like DBN, RBN, CNN, RNTN, autoencoders, Recurrent net and vanilla MLP.
+	It also includes vectorization library called Canova and distributed multi-node map reduce procedure for training the model.
+
+3. Torch
+	Torch is a Lua deep learning framework developed by Koray Kavukcuoglu, Clement Farabet and Ronan Collobert for research and development activities into deep learning algorithms.
+	Torch is written in LuaJit (framework in Lua programming language) with an underlying C implementation.
+	It has also been further contributed by Facebook, Google DeepMind, Twitter and a host of others.
+	Popular applications of Torch are for supervised image problems with Convolutional Neural Networks and agents in more complex domains with deep reinforcement learning.
+	****Features
+	Torch allows us to set up, train, and model deep net by configuring its hyperparameters.
+	Fast and efficient GPU support.
+	Provides built-in functions for indexing, transposing, slicing and numeric optimization.
+	Embeddable, with ports to iOS and Android backends.
+
+4. Caffe
+	Caffe library was developed by Yangqing Jia at the Berkeley Vision and Learning Center for supervised computer vision problems.
+	It is written in C++ with a Python interface
+	It is mainly suited for machine vision tasks and also supports speech and text, reinforcement learning and recurrent nets.	
+	****Features
+	An application can easily switch between CPU and GPU since Caffe is written in C++ with CUDA (a parallel computing platform).
+	You can build extremely complex deep net since it allows to perform highly sophisticated configuration on each layer.
+	It also includes Matlab and Python interfaces.
+	Caffe stores, communicates and manipulates the information as blobs that provides synchronization between CPU and GPU.
+
+5. TensorFlow
+	TensorFlow is an open-source deep learning library from Google. It is available on GitHub.
+	Its flexible architecture permits to use computation to one or more GPUs or CPUs in a server, desktop or mobile device with one API.
+	****Features
+	It is similar to the computational graph where edges carry data as N-dimensional vector known as tensor and nodes represent mathematical operation which acts on the tensors.
+	Tensorflow lets you deploy parallel computing devices to execute operations quicker. Operations at the nodes are automatically scheduled for parallel computing.
+	It includes features such as auto differentiation, shared and symbolic variables, and common subexpression elimination.
+	It comes with visualization tools for graphically viewing different levels of the network, changes over time throughout the training process.
+
+Performance Metric: 
+
+Metrics
+	Metrics are used to measure the performance of a neural network or any other model.
+	The commonly used metrics are error, precision, and recall.
+	**Error**is the ratio of the number of incorrect classification by a total number of classifications made by the net. This metric may be misleading if data is skewed over one class over other.
+	Precision and **recall**values are derived from confusion matrix (a table that is often used to describe the performance of a classification model) to know how well your model classifies the data.
+
+The figure above is called the confusion matrix. Following metrics are derived from it:
+
+Precision: Out of predicted classification, what proportion actually predicted correctly?
+	True positive/(True positive + False positive)
+
+Recall:	out of an actual number of classification, what proportion were classified correctly?
+	True positive/(True positive + False negative)
+
+
+Parallelism : One way to improve the performance of deep net is to implement it in terms of vectors and matrices. This avoids too many loops and increases the computation speed significantly. This is known as parallel programming which is implemented at a software level.
+	Parallelism can also be implemented at a hardware level, which is called parallel processing. CPUs with multiple cores and GPUs support parallel processing.
+
+
+Parallel Processing: 
+	Complex deep nets perform best when parallel processing is used. It can be either shared memory or distributed computing.
+
+	GPUs, FPGAs, and ASICs are some of the shared memory options available to train a deep net.
+
+	Graphical processing unit (GPU) consists of thousands of core in the same unit where each core are process instructions in parallel. Hence they are suitable for deep learning application. They consume more power.
+
+	Field programmable gate arrays (FPGA) and Application-specific Integrated specific (ASIC) are best options for customized deep net since they can be programmed at a hardware level and they are power efficient.
+
+	Data parallelism, model parallelism, and pipeline parallelism are some of the options for distributed computing for deep learning.
+
+Parallel Programming: Deep net performance can be improved at software level through parallel programming. Below are some of the ways we can implement parallel programming:
+
+	By decomposing the model into chunks and each chunk is fed in parallel to perform an independent task.
+	Identify tasks that have dependencies and group them. By creating multiple groups with no dependencies, each group of tasks can be processed in parallel.
+	By implementing tasks or task groups as threads and run them in parallel.
+
+CPU vs GPU
+	CPU executes instruction sequentially though instruction is independent of each other. Hence, it takes more time to process information for complex algorithms. It has a limited number of cores.
+	GPU, in contrast, has thousands of cores that identify independent instructions, groups them and execute in parallel. Hence they are more suitable for deep learning kind of applications.
+
+Configuring Deep Net: 	
+Configuration Parameters: 
+	When building a deep net, you need to decide on various parameters for its better performance. These are called hyperparameters.
+	Unlike weights and biases hyperparameters are not learned by itself, you need to choose these parameters when building a deep net.
+
+Hyperparameter - Architecture 
+	Input layer: This layer is nothing but our input data, more the data better the learning of deep net.
+	Hidden layers: There are many different hidden layers to choose from like convolution, pooling, activation, loss layer, etc.
+	Output layer: At this layer, you need to decide on cost functions base on which our model gets trained. Some of the cost functions are the sum of squares, exponential cost, cross-entropy, etc.
+
+Choosing the Number of Neurons: 
+	You need to decide on the number of neurons in each layer. There are two ways to choose an optimized number of neurons: growing and pruning.
+	
+	Growing: In this approach, you start with a small number of neurons and keep on adding them until there is no improvement in the cost function.
+	Pruning: It is exactly opposite of what you follow in growing. You start with excess neurons and remove them step by step until there is a cost difference.	
+	
+Activation Functions :
+	A Neural Network without Activation function would simply be a Linear regression model, which has limited power and does not perform right most of the times. Most popular types of activation functions are
+
+	Sigmoid
+	Tanh
+	ReLu
+
+Regularization:
+	We apply regularization to avoid overfitting of our model (a case where your model does not perform well on test data).
+	
+	Regularization, significantly decreases the variance of the model, without a substantial increase in its bias.
+
+	Ridge and Lasso regularization are the most commonly used regularization techniques.
+
+Learning Rate: 
+	During the time of backpropagation, the learning rate must not be too small.
+
+	This is because since it takes more time for the algorithm to learn and it should not be too large, which may skip the global minimum of the cost function.
+
+Applications of Deep Learning:
+Image Classification : Image classification is one of the common applications of deep learning.
+	A convolutional neural network can be used to recognize images and automatically label them.
+
+Object Recognition : Deep nets can also be trained to recognize different objects within the same image.
+
+Video Recognition : Deep nets can also be trained for real-time object recognition with respect to time and space.
+	Some of the popular use cases are driverless cars, robots, and theft detection.
+
+Fact Extraction and Text Translation :
+	Deep nets can be used to extract facts and relations in the text.
+
+	Named entity recognition (NER), part of speech (POS) tagging or sentiment analysis are some of the problems where neural network models have outperformed traditional approaches.
+
+	Texts can be translated from one language to other using RNN. The encoder-decoder recurrent neural network architecture is the core technology inside Google’s translate service.
+
+Sentiment Analysis: 
+	Using sentiment analysis, the underlying intent of the text can be extracted.
+
+	With social media channels, it is possible to automate and measure what public feels on a given news story, topic, brand or product.
+
+	Positive sentiment can be identified thereby allowing the identification of product advocates, or to see which parts of a business strategy are working.
+
+Medical Applications: 
+	Deep nets can be trained to detect cancerous cells and tumors from scanned images.
+
+	They are applied in drug discovery by training nets with molecular structure and chemical compositions.
+
+	Using MRI and CT scans neural networks can be trained to differentiate between benign and malignant tumors.
+
+Other Applications : 
+	Deep nets are used in stock predictions and building portfolios and risk allocation.
+
+	In digital advertising to optimally bid an ad space in a web page.
+
+	In fraud detection to detect suspicious transaction.
+
+	Using images from satellites and sensor data deep nets can be trained to detect problematic environmental conditions in agriculture.
+	
+
+	
+
+	
+################################### TensorFlow #############################################
+
+It is a Machine Learning library from Google Brain.
+It can be used to design, build, validate and implement Machine Learning and Deep Learning Models.
+It can also be used as a tool for performing high-end numerical computations.
+
+
+Course Structure
+You will understand the following concepts:
+
+	The concept of Tensor and how are they different from vectors
+	Basics of TensorFlow Programming like declaring variables and stating sessions
+	Performing basic mathematical functions using TensorFlow
+	How to implement machine learning models?
+
+
+
+
+Computation Graph
+A computation graph is an important representation of data flow while performing calculations using TensorFlow.
+
+This graph organizes the computations and calculates them sequentially.
+
+Getting Started
+Running a TensorFlow session involves the following steps:
+	Importing the desired library
+	Initializing the variables and constants
+	Placeholders for performing the computation
+	Initializing a Session on CPU or GPU
+	Performing the computation
+	Display results
+	Close Session
+
+Simple Program 
+	# Import tensorflow library  
+	import tensorflow as tf
+
+	# Initialize two constants
+	a1 = tf.constant([4,3,2,1])
+	a2 = tf.constant([1,3,4,7])
+
+	# Perform Multiplication
+	res = tf.multiply(a1, a2)
+
+	# Intialize the Session
+	sess = tf.Session()
+
+	# Print the result
+	print(sess.run(res))
+
+	# Close the session
+	sess.close()
+
+Handling Session Efficiently
+	# Import `tensorflow`
+	import tensorflow as tf
+
+	# Initialize two constants
+	a1 = tf.constant([4,3,2,1])
+	a2 = tf.constant([3,1,3,4])
+
+	# Perform Multiplication
+	res = tf.multiply(a1, a2)
+
+	# Initialize Session and run `result`
+	with tf.Session() as sess:
+	  finalOutput = sess.run(res)
+	  print(finalOutput)
+
+Constants
+	Constants are created using the constant() function.
+
+	constant(value, dtype=None, shape=None, name='Const', verify_shape=False)
+
+	value - Can take any assigned value
+	dtype - Data Type (float / integer)
+	shape - this is optional , it takes the dimensions
+	name - can assign any name to the constant
+	verify_shape - another optional parameter that verifies the dimension of the constant.
+	 
+
+	Example:
+
+	x = tf.constant(42, name="a", dtype=tf.float32)
+
+Variables
+	In TensorFlow all the variables are in-memory buffers that have tensors. 
+	These tensors require initialization to be consumed in the data flow graph.
+	Variables become a part of the graph by calling the variable() construct.
+	They are used to keep and update the parameters used in the models.
+	Variables can be defined as shown below.
+	a = tf.Variable(tf.zeros([5]), name="a")
+
+	Another way of using variable is
+
+	z = tf.Variable(tf.add(x, y), trainable=False)
+
+Placeholders
+	Placeholders are values that are initially unassigned but get initialized when the session is invoked.
+	The main use of placeholders is they allow the creation of operations and the computational graph sans needing to provide the data before that.
+	The required data can be added during the actual runtime from any external sources.
+
+	Syntax:
+
+	placeholder(dtype, shape=None, name=None)
+
+Hands On:
+https://2886795301-8888-host01-fresco.environments.katacoda.com/notebooks/HandOn_Basics_of_Tensorflow.ipynb
+
+Tensor Parameters
+	Any tensor can be identified with the help of the following three parameters:
+
+	Rank: This specifies the number of dimensions of the tensor.
+	Shape: The number of rows and columns in a tensor.
+	Type: The datatype that is carried by the tensor.
+	Tensors can be built using NumPy arrays and can be converted into a tensor object.
+
+One Dimension Tensors
+1D tensors can be built in the following manner:
+
+	import numpy as np
+	tensor_1d = np.array([1,2,3,4,5])
+
+	print (tensor_1d)
+	[1 2 3 4 5]
+	Getting the Dimensions
+
+	print (tensor_1d.ndim)
+	1
+	Getting the Shape
+
+	print (tensor_1d.shape)
+	(5,)
+	Getting the Data Type
+
+	print (tensor_1d.dtype)
+	int64
+
+	Convert to Tensors
+Any NumPy array can be converted to a tensor in the following way.
+
+	import tensorflow as tf 
+
+	tensor1d = tf.convert_to_tensor(tensor_1d, dtype=tf.int64)
+
+	with tf.Session() as session:
+		print session.run(tensor1d)
+		print session.run(tensor1d[0])
+		print session.run(tensor1d[1])
+	[1   2   3   4   5]
+	1
+	2
+
+2D Tensors
+Creating a 2d array
+
+array_2d_1 = np.array(np.arange(16).reshape(4,4), dtype='int32')
+
+print(array_2d_1)
+
+array([[ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11],
+       [12, 13, 14, 15]], dtype=int32)
+
+Attributes of Array
+Attributes of the array
+
+The array has two dimensions.
+
+	array_2d_1.ndim
+	2
+	The array has 4 rows and 4 columns.
+
+	array_2d_1.shape
+	(4, 4)
+	The datatype is integer.
+
+	array_2d_1.dtype
+	dtype('int32')
+
+Converting to Tensors : Converting the 2d array to rank 2 tensor
+
+	tensor_2d_1 = tf.convert_to_tensor(array_2d_1)
+
+
+	with tf.Session() as session:
+		print (session.run(tensor_2d_1))
+	
+
+Matrix Operations with Tensors: TensorFlow supports all the matrix operations out of the box
+	Addition
+	Dot product
+	Matrix multiplication
+	Determinant
+	to name a few.	
+
+1) Matrix Addition
+
+	Initializing the Array
+
+	array_2d_1 = np.array(np.arange(16).reshape(4,4), dtype='int32')
+	array_2d_2 = np.array(np.arange(16,32).reshape(4,4), dtype='int32')
+
+	Converting to Tensors
+
+	tensor_2d_1 = tf.convert_to_tensor(array_2d_1)
+	tensor_2d_2 = tf.convert_to_tensor(array_2d_2)
+	Matrix Operation
+
+	mat_add = tf.add(tensor_2d_1, tensor_2d_2)
+	Executing the Session
+
+	with tf.Session() as session:
+		print (session.run(mat_add)
+
+2) Matrix multiplication
+
+	Initializing the Array
+	array_2d_1 = np.array(np.arange(16).reshape(4,4), dtype='int32')
+	array_2d_2 = np.array(np.arange(16,32).reshape(4,4), dtype='int32')
+
+	Converting to Tensors
+	tensor_2d_1 = tf.convert_to_tensor(array_2d_1)
+	tensor_2d_2 = tf.convert_to_tensor(array_2d_2)
+	Matrix Operation
+
+	mat_mul = tf.matmul(tensor_2d_1, tensor_2d_2)
+	# Executing the Session
+	with tf.Session() as session:
+		print (session.run(mat_mul))
+
+3) Determinant of a Matrix
+
+	Initializing the Array
+	array_2d_1 = np.array(np.arange(16).reshape(4,4), dtype='int32')
+
+	Converting to Tensors
+	tensor_2d_1 = tf.convert_to_tensor(array_2d_1)
+	Matrix Operation
+
+	mat_det = tf.matrix_determinant(tensor_2d_1)
+	Executing the Session
+
+	with tf.Session() as session:
+		print (session.run(mat_det))
+
+# Model Building Steps
+	Define the relationship between xx and yy .
+	Generate random data points points.
+	Define a cost function that calculates the error between the actual and predicted values.
+	Optimize the cost function using gradient descent algorithm.
+	Iterate this optimization process till the values converge.
+
+
+Data Creation
+	# Importing the required libraries.
+
+	import numpy as np
+	import tensorflow as tf 
+	
+	#Initializing the number of points and the dependent and independent variables.
+	numPts = 100
+	x = []
+	y = []
+	
+	#Assigning the values for a and b .
+	a = 0.45
+	b = 0.60
+	y = 0.45 * x + 0.60 y=0.45∗x+0.60
+
+	Finally, after gradient descent, the model should also converge to the above values of aa and bb
+
+Generating Values
+	# The below code is used to generate random points for xx and yy
+
+	for i in range(numPts):
+		xtemp = np.random.normal(0.0,0.5)
+		ytemp = a*xtemp + b +np.random.normal(0.0,0.1)
+		x.append([xtemp])
+		y.append([ytemp])
+	
+Initializing the Variables
+	1) The objective here is to implement a Machine Learning algorithm to predict using TensorFlow which must predict yy given xx.
+	2) The linear regression model should converge to an optimal aa and bb that minimizes the cost function.
+
+	Initializing arbitrary values for AA and setting bb to zero.
+
+	A = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
+	b = tf.Variable(tf.zeros([1]))
+	Creating a relationship between xx and yy
+
+	yPred = tf.add(tf.multiply(A, x), b)	
+
+Cost Func and Grad Desc: The below code is used to set the learning rate. It can be set to any number between 0 and 1.
+
+	learningRate = 0.25
+	
+	#Below the cost function is defined. The optimization is done using gradient descent. 
+	#Finally, the model is trained to minimize the cost function.
+
+	cost_function = tf.reduce_mean(tf.square(yPred - y))
+	optimizer = tf.train.GradientDescentOptimizer(learningRate)
+	train = optimizer.minimize(cost_function)
+
+Testing the Model
+	NumIter = 50
+	model = tf.initialize_all_variables()
+
+	with tf.Session() as session:
+			session.run(model)
+			for step in range(0,NumIter):
+				session.run(train)
+			ModelA = session.run(A)
+			ModelB = session.run(b)
+
+Logistic regression
+
+	In Logistic regression, the dependent variable takes values between 0 and 1. 
+	This model is used for binary classification problems to predict the probability of occurrence of the outcome in a given class. 
+	This is supervised learning technique.
+
+Steps Involved
+	i) The weights and bias values are initialized to arbitrary values.
+	ii) Based on the values, the output is calculated. The actual value of the output is compared to the calculated value. 
+	The error value is used to adjust the weights and biases.
+	iii) This process is repeated till the values converge and the error is minimized.
